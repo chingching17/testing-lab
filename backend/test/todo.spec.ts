@@ -21,6 +21,6 @@ describe('Todo API Testing', () => {
 
     // assert: response should be an empty array
     const todos = JSON.parse(response.body)['todos']
-    expect(todos).toStrictEqual([])
+    expect(todos).toStrictEqual([123])
   })
 })
