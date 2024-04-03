@@ -6,7 +6,7 @@ import { Todo, TodoBody } from '../src/types/todo'
 describe('Server Testing', () => {
   const server = serverOf()
 
-  test('Create a new input, When send a Get request to /api/v1/todos, It should tell it is written into database', async () => {
+  test('Create a new input, Use findAllTodos to get items, It should tell createTodo and findAllTodos are correct', async () => {
     const newBody:Todo = {
       id: "660bf6473f7e41a7451a5105",
       name: "difjo",
@@ -17,6 +17,19 @@ describe('Server Testing', () => {
     const createdTodo = TodoRepo.createTodo(newBody);
     const returnTodo = TodoRepo.findAllTodos()
     expect(returnTodo).toMatchObject(createdTodo)
+  })
+
+  test('Create a new input, Use deleteTodoById to delete items, It should tell createTodo and deleteTodoById are correct', async () => {
+    const newBody:Todo = {
+      id: "660bf6473f7e41a7451a5105",
+      name: "difjo",
+      description: "jofeioj",
+      status: false
+    };
+
+    const createdTodo = TodoRepo.createTodo(newBody);
+    const delTodo = TodoRepo.deleteTodoById("660bf6473f7e41a7451a5105")
+    expect(createdTodo).toMatchObject(delTodo)
   })
 
   test('When send a GET request to /ping, it should return status code 200', async () => {
