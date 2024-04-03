@@ -1,6 +1,7 @@
 import { afterAll, afterEach, beforeAll, describe, expect, test, vi } from 'vitest'
 import { serverOf } from '../src/server'
 import * as TodoRepo from '../src/repo/todo'
+import { Todo, TodoBody } from '../src/types/todo'
 
 describe('Todo API Testing', () => {
   const server = serverOf()
@@ -8,6 +9,7 @@ describe('Todo API Testing', () => {
   afterEach(() => {
     vi.resetAllMocks()
   })
+
 
   test('Given an empty array return from repo function, When send a GET request to /api/v1/todos, Then it should response an empty array', async () => {
     // assert: stub the repo function to return an empty array
@@ -21,6 +23,7 @@ describe('Todo API Testing', () => {
 
     // assert: response should be an empty array
     const todos = JSON.parse(response.body)['todos']
-    expect(todos).toStrictEqual([123])
+    expect(todos).toStrictEqual([])
   })
+
 })
